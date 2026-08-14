@@ -1,10 +1,16 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi primera página</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -12,6 +18,7 @@
             color: #222;
         }
 
+        /* ENCABEZADO */
         header {
             background-color: #222;
             color: white;
@@ -19,6 +26,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         #logo {
@@ -26,14 +35,20 @@
             font-weight: bold;
         }
 
+        #buscador {
+            display: flex;
+            gap: 5px;
+        }
+
         #buscador input {
             padding: 10px;
-            border-radius: 5px;
             border: none;
+            border-radius: 5px;
+            width: 200px;
         }
 
         #buscador button {
-            padding: 10px;
+            padding: 10px 15px;
             background-color: #e91e63;
             color: white;
             border: none;
@@ -41,21 +56,32 @@
             cursor: pointer;
         }
 
+        #buscador button:hover {
+            background-color: #c2185b;
+        }
+
+        /* MENÚ */
         nav {
             background-color: #e91e63;
             padding: 15px;
-            color: white;
+            text-align: center;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin-right: 20px;
+            margin: 0 15px;
             font-weight: bold;
         }
 
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* CONTENIDO */
         main {
             width: 80%;
+            max-width: 1000px;
             margin: 30px auto;
             background-color: white;
             padding: 25px;
@@ -63,19 +89,30 @@
             box-shadow: 0 0 10px #ccc;
         }
 
+        h1 {
+            text-align: center;
+            color: #e91e63;
+        }
+
         .perfil {
             display: flex;
             gap: 25px;
             align-items: center;
+            margin-top: 25px;
         }
 
         .perfil img {
-            border-radius: 10px;
             width: 180px;
             height: 220px;
             object-fit: cover;
+            border-radius: 10px;
         }
 
+        .perfil-texto {
+            flex: 1;
+        }
+
+        /* TARJETAS */
         .tarjetas {
             display: flex;
             gap: 20px;
@@ -87,12 +124,37 @@
             padding: 20px;
             border-radius: 10px;
             flex: 1;
+            text-align: center;
         }
 
         .tarjeta h3 {
             color: #e91e63;
         }
 
+        .tarjeta button {
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .tarjeta button:hover {
+            background-color: #c2185b;
+        }
+
+        /* RESULTADO DEL BUSCADOR */
+        #resultado {
+            display: none;
+            background-color: #fff3f7;
+            border-left: 5px solid #e91e63;
+            padding: 15px;
+            margin-top: 25px;
+            border-radius: 5px;
+        }
+
+        /* PIE DE PÁGINA */
         footer {
             text-align: center;
             background-color: #222;
@@ -100,86 +162,241 @@
             padding: 20px;
             margin-top: 30px;
         }
+
+        /* RESPONSIVE */
+        @media (max-width: 700px) {
+            .perfil {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .tarjetas {
+                flex-direction: column;
+            }
+
+            header {
+                justify-content: center;
+            }
+
+            nav a {
+                display: block;
+                margin: 10px;
+            }
+
+            main {
+                width: 95%;
+            }
+        }
     </style>
 </head>
 
 <body>
 
+    <!-- ENCABEZADO -->
     <header>
+
         <div id="logo">
             🎤 Mi primera página
         </div>
 
         <div id="buscador">
-            <input type="text" placeholder="Buscar...">
-            <button>Buscar</button>
-        </div>
-    </header>
-
-    <nav>
-        <a href="#">Inicio</a>
-        <a href="#">Artistas</a>
-        <a href="#">Música</a>
-        <a href="#">Contacto</a>
-    </nav>
-
-    <main>
-
-        <h1>Bienvenido a mi página</h1>
-
-        <div class="perfil">
-
-            <img 
-                src="https://static.wikia.nocookie.net/rap/images/7/78/Renepuente.jpg/revision/latest/scale-to-width-down/732?cb=20240124033405&path-prefix=es"
-                alt="René Puente"
+            <input
+                type="text"
+                id="textoBusqueda"
+                placeholder="Buscar..."
             >
 
-            <div>
-                <h2>René Puente</h2>
-                <p>
-                    Bienvenido a mi primera página web. 
-                    Aquí puedes encontrar información sobre música,
-                    artistas y mucho más.
-                </p>
-
-                <p>
-                    Esta página está creada utilizando HTML y CSS.
-                </p>
-            </div>
-
+            <button onclick="buscar()">
+                Buscar
+            </button>
         </div>
 
-        <div class="tarjetas">
+    </header>
 
-            <div class="tarjeta">
-                <h3>🎵 Música</h3>
-                <p>
-                    Descubre diferentes artistas y canciones.
-                </p>
+
+    <!-- MENÚ -->
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#artistas">Artistas</a>
+        <a href="#musica">Música</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+
+    <!-- CONTENIDO -->
+    <main>
+
+        <section id="inicio">
+
+            <h1>Bienvenido a mi página</h1>
+
+            <div class="perfil">
+
+                <img
+                    src="https://static.wikia.nocookie.net/rap/images/7/78/Renepuente.jpg/revision/latest/scale-to-width-down/732?cb=20240124033405&path-prefix=es"
+                    alt="René Puente"
+                >
+
+                <div class="perfil-texto">
+
+                    <h2>René Puente</h2>
+
+                    <p>
+                        Bienvenido a mi primera página web.
+                        Aquí puedes encontrar información sobre
+                        música, artistas y mucho más.
+                    </p>
+
+                    <p>
+                        Esta página está creada utilizando
+                        HTML, CSS y JavaScript.
+                    </p>
+
+                </div>
+
             </div>
 
-            <div class="tarjeta">
+        </section>
+
+
+        <!-- RESULTADO DEL BUSCADOR -->
+        <div id="resultado"></div>
+
+
+        <!-- TARJETAS -->
+        <div class="tarjetas">
+
+            <div class="tarjeta" id="musica">
+
+                <h3>🎵 Música</h3>
+
+                <p>
+                    Descubre diferentes canciones y géneros musicales.
+                </p>
+
+                <button onclick="mostrarMensaje('Música')">
+                    Ver más
+                </button>
+
+            </div>
+
+
+            <div class="tarjeta" id="artistas">
+
                 <h3>🎤 Artistas</h3>
+
                 <p>
                     Conoce más sobre tus artistas favoritos.
                 </p>
+
+                <button onclick="mostrarMensaje('Artistas')">
+                    Ver más
+                </button>
+
             </div>
 
+
             <div class="tarjeta">
+
                 <h3>🔥 Noticias</h3>
+
                 <p>
                     Entérate de las novedades del mundo de la música.
                 </p>
+
+                <button onclick="mostrarMensaje('Noticias')">
+                    Ver más
+                </button>
+
             </div>
 
         </div>
 
+
+        <!-- CONTACTO -->
+        <section id="contacto">
+
+            <h2>📩 Contacto</h2>
+
+            <p>
+                Puedes contactarme para obtener más información.
+            </p>
+
+            <button onclick="mostrarMensaje('Contacto')">
+                Contactar
+            </button>
+
+        </section>
+
     </main>
 
+
+    <!-- PIE DE PÁGINA -->
     <footer>
+
         <p>© 2026 Mi primera página web</p>
-        <p>Creada con HTML y CSS</p>
+
+        <p>
+            Creada con HTML, CSS y JavaScript
+        </p>
+
     </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        function buscar() {
+
+            const texto = document
+                .getElementById("textoBusqueda")
+                .value
+                .trim();
+
+            const resultado = document
+                .getElementById("resultado");
+
+            if (texto === "") {
+
+                resultado.style.display = "block";
+
+                resultado.innerHTML =
+                    "⚠️ Escribe algo para buscar.";
+
+                return;
+            }
+
+            resultado.style.display = "block";
+
+            resultado.innerHTML =
+                "🔎 Buscando: <strong>" +
+                texto +
+                "</strong>";
+
+        }
+
+
+        function mostrarMensaje(seccion) {
+
+            alert(
+                "Has seleccionado la sección: " +
+                seccion
+            );
+
+        }
+
+
+        document
+            .getElementById("textoBusqueda")
+            .addEventListener("keypress", function(event) {
+
+                if (event.key === "Enter") {
+                    buscar();
+                }
+
+            });
+
+    </script>
 
 </body>
 </html>
