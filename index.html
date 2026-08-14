@@ -3,36 +3,183 @@
 <head>
     <meta charset="utf-8">
     <title>Mi primera página</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #222;
+        }
+
+        header {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        #buscador input {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        #buscador button {
+            padding: 10px;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        nav {
+            background-color: #e91e63;
+            padding: 15px;
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        main {
+            width: 80%;
+            margin: 30px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        .perfil {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .perfil img {
+            border-radius: 10px;
+            width: 180px;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .tarjetas {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .tarjeta {
+            background-color: #eee;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+        }
+
+        .tarjeta h3 {
+            color: #e91e63;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Mi primera página</h1>
-
-    <img 
-        src="https://static.wikia.nocookie.net/rap/images/7/78/Renepuente.jpg/revision/latest/scale-to-width-down/732?cb=20240124033405&path-prefix=es" 
-        width="104" 
-        height="142" 
-        alt="René Puente"
-    >
-
     <header>
         <div id="logo">
+            🎤 Mi primera página
         </div>
 
         <div id="buscador">
+            <input type="text" placeholder="Buscar...">
+            <button>Buscar</button>
         </div>
     </header>
 
     <nav>
-        <div id="ubicacion">
+        <a href="#">Inicio</a>
+        <a href="#">Artistas</a>
+        <a href="#">Música</a>
+        <a href="#">Contacto</a>
+    </nav>
+
+    <main>
+
+        <h1>Bienvenido a mi página</h1>
+
+        <div class="perfil">
+
+            <img 
+                src="https://static.wikia.nocookie.net/rap/images/7/78/Renepuente.jpg/revision/latest/scale-to-width-down/732?cb=20240124033405&path-prefix=es"
+                alt="René Puente"
+            >
+
+            <div>
+                <h2>René Puente</h2>
+                <p>
+                    Bienvenido a mi primera página web. 
+                    Aquí puedes encontrar información sobre música,
+                    artistas y mucho más.
+                </p>
+
+                <p>
+                    Esta página está creada utilizando HTML y CSS.
+                </p>
+            </div>
+
         </div>
 
-        <div id="Categoria">
-            <div id="Indice">
+        <div class="tarjetas">
+
+            <div class="tarjeta">
+                <h3>🎵 Música</h3>
+                <p>
+                    Descubre diferentes artistas y canciones.
+                </p>
             </div>
+
+            <div class="tarjeta">
+                <h3>🎤 Artistas</h3>
+                <p>
+                    Conoce más sobre tus artistas favoritos.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>🔥 Noticias</h3>
+                <p>
+                    Entérate de las novedades del mundo de la música.
+                </p>
+            </div>
+
         </div>
-    </nav>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Mi primera página web</p>
+        <p>Creada con HTML y CSS</p>
+    </footer>
 
 </body>
 </html>
